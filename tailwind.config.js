@@ -1,11 +1,17 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+// tailwind.config.js
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'gilroy-bold': ['Gilroy-Bold', 'sans-serif'],
+        'gilroy-extrabold': ['Gilroy-ExtraBold', 'sans-serif'],
+        'gilroy-light': ['Gilroy-Light', 'sans-serif'],
+        'gilroy-regular': ['Gilroy-Regular', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

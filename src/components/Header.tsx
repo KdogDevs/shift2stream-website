@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import '../styles/fonts.css';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,9 +34,27 @@ const Header: React.FC = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
-    { name: 'Subsidiaries', path: '/subsidiaries' },
-    { name: 'Contact', path: 'mailto:contact@shift2stream.com' },
+    { name: 'My Velo TV', path: '/my-velo-tv' },
+    { name: "What's Happening", path: '/whats-happening' },
+    { name: 'Contact', path: 'mailto:info@shift2stream.com' },
   ];
+
+  const navLinkStyles = (isContact: boolean) => `
+    px-3 py-2 
+    rounded-md 
+    transition-all 
+    duration-300 
+    ${isHomePage && !scrolled
+      ? 'text-white hover:bg-white hover:text-blue-600'
+      : 'text-gray-600 hover:bg-gray-100'
+    }
+    ${!isContact && location.pathname === (isContact ? '' : navItems.find(item => item.name === 'Contact')?.path) 
+      ? 'font-gilroy-bold' 
+      : 'font-gilroy-regular'}
+    text-sm
+    tracking-wide
+    uppercase
+  `;
 
   return (
     <motion.header
@@ -48,16 +67,23 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <Link to="/" className={`text-2xl font-bold transition-colors duration-300 ${isHomePage && !scrolled ? 'text-white' : 'text-blue-600'}`}>
-            <motion.span
+          <Link to="/" className="transition-opacity duration-300 hover:opacity-90">
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
+              className="h-12 md:h-16"
             >
-              Shift2Stream
-            </motion.span>
+              <img
+                src="/S2S Logo Redesign 2024-Doppler Media Horizontal-green2 Bottom.png"
+                alt="Shift2Stream Logo"
+                className={`h-full w-auto transition-opacity duration-300 ${
+                  isHomePage && !scrolled ? 'filter brightness-0 invert' : ''
+                }`}
+              />
+            </motion.div>
           </Link>
-          <nav className="hidden md:flex space-x-4">
+          <nav className="hidden md:flex space-x-6">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -68,22 +94,20 @@ const Header: React.FC = () => {
                 {item.name === 'Contact' ? (
                   <a
                     href={item.path}
-                    className={`px-3 py-2 rounded-md transition duration-300 ${
-                      isHomePage && !scrolled
-                        ? 'text-white hover:bg-white hover:text-blue-600'
-                        : 'text-gray-600 hover:bg-gray-100'
-                    }`}
+                    className={navLinkStyles(true)}
+                    style={{ fontFamily: 'Gilroy-Regular' }}
                   >
                     {item.name}
                   </a>
                 ) : (
                   <Link
                     to={item.path}
-                    className={`px-3 py-2 rounded-md transition duration-300 ${
-                      isHomePage && !scrolled
-                        ? 'text-white hover:bg-white hover:text-blue-600'
-                        : 'text-gray-600 hover:bg-gray-100'
-                    } ${location.pathname === item.path ? 'font-semibold' : ''}`}
+                    className={navLinkStyles(false)}
+                    style={{ 
+                      fontFamily: location.pathname === item.path 
+                        ? 'Gilroy-Bold' 
+                        : 'Gilroy-Regular' 
+                    }}
                   >
                     {item.name}
                   </Link>
@@ -124,18 +148,24 @@ const Header: React.FC = () => {
                   {item.name === 'Contact' ? (
                     <a
                       href={item.path}
-                      className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-md transition duration-300 block"
+                      className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-md transition duration-300 block uppercase tracking-wide text-sm"
                       onClick={toggleMenu}
+                      style={{ fontFamily: 'Gilroy-Regular' }}
                     >
                       {item.name}
                     </a>
                   ) : (
                     <Link
                       to={item.path}
-                      className={`text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-md transition duration-300 block ${
-                        location.pathname === item.path ? 'font-semibold' : ''
+                      className={`text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-md transition duration-300 block uppercase tracking-wide text-sm ${
+                        location.pathname === item.path ? 'font-gilroy-bold' : 'font-gilroy-regular'
                       }`}
                       onClick={toggleMenu}
+                      style={{ 
+                        fontFamily: location.pathname === item.path 
+                          ? 'Gilroy-Bold' 
+                          : 'Gilroy-Regular' 
+                      }}
                     >
                       {item.name}
                     </Link>

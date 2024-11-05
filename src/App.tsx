@@ -6,7 +6,8 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
-import Subsidiaries from './pages/Subsidiaries';
+import MyVeloTV from './pages/my-velo-tv';
+import WhatsHappening from './pages/WhatsHappening';
 
 const App: React.FC = () => {
   return (
@@ -18,7 +19,8 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/subsidiaries" element={<Subsidiaries />} />
+            <Route path="/my-velo-tv" element={<MyVeloTV />} />
+            <Route path="/whats-happening" element={<WhatsHappening />} />
           </Routes>
         </main>
         <Footer />
