@@ -1,5 +1,4 @@
 // src/components/ScrollProgress.tsx
-import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 
 export const ScrollProgress: React.FC = () => {
