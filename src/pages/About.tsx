@@ -1,6 +1,6 @@
 // src/pages/About.tsx
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring} from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ScrollProgress } from '../components/ScrollProgress';
 import { PurposeVisual } from '../components/PurposeVisual';
@@ -157,7 +157,7 @@ interface ContentSectionProps {
     index: number;
   }
   
-  const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
+  const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
     const [ref, inView] = useInView({
       threshold: 0.3,
       triggerOnce: false
