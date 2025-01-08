@@ -1,179 +1,370 @@
 // src/pages/About.tsx
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import '../styles/fonts.css';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { ScrollProgress } from '../components/ScrollProgress';
+import { PurposeVisual } from '../components/PurposeVisual';
+import { VisionVisual } from '../components/VisionVisual';
+import { MissionVisual } from '../components/MissionVisual';
+import { ValuesVisual } from '../components/ValuesVisual';
+import { BrandVisual } from '../components/BrandVisual';
+import { CharacterVisual } from '../components/CharacterVisual';
+import { MarketVisual } from '../components/MarketVisual';
+import { FoundersVisual } from '../components/FoundersVisual';
+import { PurposeIcon } from '../components/icons/PurposeIcon';
+import { VisionIcon } from '../components/icons/VisionIcon';
+import { MissionIcon } from '../components/icons/MissionIcon';
+import { ValuesIcon } from '../components/icons/ValuesIcon';
+import { BrandPillarsIcon } from '../components/icons/BrandPillarsIcon';
+import { CharacterIcon } from '../components/icons/CharacterIcon';
+import { MarketIcon } from '../components/icons/MarketIcon';
+import { FoundersIcon } from '../components/icons/FoundersIcon';
 
-const About: React.FC = () => {
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+interface Section {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  content: string | string[];
+  color: {
+    gradient: string;
+    text: string;
+    accent: string;
+  };
+  visual: React.ReactNode;
+}
 
-    const statements = [
-        {
-            title: 'Purpose',
-            icon: '🎯',
-            content: 'We strive to bring entertainment and live content to households at a price that makes sense through the hybrid experience. Seamlessly integrating the available connectivity into the household to achieve the most efficient and highest quality entertainment available.'
-        },
-        {
-            title: 'Vision',
-            icon: '👁️',
-            content: 'Empower Broadcasters with revenue-generating targeted advertising and smart home IoT services and Broadband Providers with improved QoS and data services for increased network efficiency.'
-        },
-        {
-            title: 'Mission',
-            icon: '🚀',
-            content: 'Through the hybrid experience, we aim to revolutionize the streaming industry by offering robust, scalable, and user-friendly platforms that cater to the evolving needs of our diverse clientele.'
-        },
-        {
-            title: 'Brand Pillars',
-            icon: '🏛️',
-            content: [
-                'Enjoyment: Make available the Entertainment and live TV services to households with better video, home theater quality sound with enhanced dialog, emergency service/events with hyper-local updates.',
-                'Value: We combine Free Broadcast TV with value-minded FAST and PayTV to bring entertainment and data services to the household at a price that makes sense to all.',
-                'Trust: Our focus and goal is to help make the communities we serve cohesive, informed and linked to the events and sports that bring people together.',
-                'Innovative: We innovate and leverage technology with the primary goal of improving the experience of the users and not complicating the experience.'
-            ]
-        }
-    ];
-
+const sections: Section[] = [
+  {
+    id: 'purpose',
+    icon: <PurposeIcon />,
+    title: 'Our Purpose',
+    content: 'We strive to provide people and communities with access to the news, sports, and entertainment they seek at a reasonable price. We seamlessly integrate the connectivity available to each household through our hybrid connected TV technology to achieve the most efficient and highest-quality interactive media experiences possible.',
+    color: {
+      gradient: 'from-primary-900/50 to-primary-800/30',
+      text: 'text-primary-50',
+      accent: 'primary-500'
+    },
+    visual: <PurposeVisual />
+  },
+  {
+    id: 'vision',
+    icon: <VisionIcon />,
+    title: 'Our Vision',
+    content: 'Empower broadcasters and broadband providers with revenue-generating advertising using 1st-party data, performance-based measurement, and AI across all media types delivered to the household, with improved QoS and managed data services for increased network efficiency.',
+    color: {
+      gradient: 'from-secondary-900/50 to-secondary-800/30',
+      text: 'text-secondary-50',
+      accent: 'secondary-500'
+    },
+    visual: <VisionVisual />
+  },
+  {
+    id: 'mission',
+    icon: <MissionIcon />,
+    title: 'Our Mission',
+    content: 'Provide consumers with the best possible interactive media experiences through intelligent cloud-based and connected TV hybrid technologies.',
+    color: {
+      gradient: 'from-accent-900/50 to-accent-800/30',
+      text: 'text-accent-50',
+      accent: 'accent-500'
+    },
+    visual: <MissionVisual />
+  },
+  {
+    id: 'values',
+    icon: <ValuesIcon />,
+    title: 'Company Values',
+    content: [
+      'Passionate: Driving results with dedication and full expertise.',
+      'Partnering: Spirit of collaboration and mutual respect for shared success.',
+      'Pioneering: Pursuing solutions with curiosity and courage.'
+    ],
+    color: {
+      gradient: 'from-primary-800/50 to-secondary-900/30',
+      text: 'text-primary-50',
+      accent: 'primary-400'
+    },
+    visual: <ValuesVisual />
+  },
+  {
+    id: 'brand',
+    icon: <BrandPillarsIcon />,
+    title: 'Brand Pillars',
+    content: [
+      'Enjoyment: We provide access to the entertainment you want by making it seamless, simple, and satisfying.',
+      'Value: We combine Free Broadcast TV with value-minded FAST and PayTV services.',
+      'Trust: Our focus is helping communities stay informed and connected.',
+      'Innovation: We leverage technology to improve, not complicate, the user experience.'
+    ],
+    color: {
+      gradient: 'from-secondary-800/50 to-accent-900/30',
+      text: 'text-secondary-50',
+      accent: 'secondary-400'
+    },
+    visual: <BrandVisual />
+  },
+  {
+    id: 'character',
+    icon: <CharacterIcon />,
+    title: 'Brand Character',
+    content: [
+      'Accessible: Products built to exceed customer expectations.',
+      'Dynamic: Leveraging AI for personalized experiences.',
+      'Hyper-Local: Geography-based technologies for meaningful engagement.',
+      'Reliable: Multi-layered connectivity for uninterrupted service.'
+    ],
+    color: {
+      gradient: 'from-accent-800/50 to-primary-900/30',
+      text: 'text-accent-50',
+      accent: 'accent-400'
+    },
+    visual: <CharacterVisual />
+  },
+  {
+    id: 'market',
+    icon: <MarketIcon />,
+    title: 'Market Segments',
+    content: [
+      'Consumers seeking the Future of TV',
+      'Broadcast TV Companies',
+      'Low Power TV Broadcaster',
+      'Fixed & Wireless Broadband Providers',
+      'Sports Teams & Regional Sports Networks',
+      'Content Companies'
+    ],
+    color: {
+      gradient: 'from-primary-900/50 to-accent-800/30',
+      text: 'text-primary-50',
+      accent: 'primary-500'
+    },
+    visual: <MarketVisual />
+  },
+  {
+    id: 'founders',
+    icon: <FoundersIcon />,
+    title: 'Our Founders',
+    content: 'Mark Jensen and Steve Calzone bring over 20 years of experience in media, entertainment, and telecommunications, working with companies across North America, LATAM, EMEA, Scandinavia, and Asia.',
+    color: {
+      gradient: 'from-secondary-900/50 to-primary-800/30',
+      text: 'text-secondary-50',
+      accent: 'secondary-500'
+    },
+    visual: <FoundersVisual />
+  }
+];
+interface ContentSectionProps {
+    section: Section;
+    index: number;
+  }
+  
+  const ContentSection: React.FC<ContentSectionProps> = ({ section, index }) => {
+    const [ref, inView] = useInView({
+      threshold: 0.3,
+      triggerOnce: false
+    });
+  
     return (
-        <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen py-24 px-6 overflow-hidden">
-            <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="max-w-5xl mx-auto"
-            >
-                <motion.h1 
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-5xl text-center mb-16 text-blue-800"
-                    style={{ fontFamily: 'Gilroy-ExtraBold' }}
+      <motion.section
+        ref={ref}
+        className="min-h-screen py-20 px-4 flex items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          className="container mx-auto max-w-7xl"
+          initial={{ opacity: 0, y: 100 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <div 
+            className={`relative backdrop-blur-xl bg-gradient-to-br ${section.color.gradient} 
+              rounded-[2.5rem] p-8 md:p-12 overflow-hidden group transition-all duration-500
+              hover:shadow-glow hover:shadow-${section.color.accent} border border-white/10`}
+          >
+            {/* Animated Background Effects */}
+            <div className="absolute inset-0 bg-shine-gradient bg-shine animate-shine-slow opacity-5" />
+            <div className="absolute inset-0 bg-gradient-radial from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            {/* Content Grid */}
+            <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Text Content */}
+              <div className="space-y-8">
+                <motion.div 
+                  className="flex items-center space-x-4"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                  transition={{ duration: 0.6 }}
                 >
-                    About
-                </motion.h1>
-
-                <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="text-2xl text-center mb-20 max-w-3xl mx-auto text-blue-700"
-                    style={{ fontFamily: 'Gilroy-Light' }}
+                  <motion.div 
+                    className={`w-16 h-16 rounded-2xl bg-${section.color.accent}/20 p-3 
+                      flex items-center justify-center group-hover:bg-${section.color.accent}/30 
+                      transition-colors duration-300`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {section.icon}
+                  </motion.div>
+                  <h2 className={`text-4xl md:text-5xl font-gilroy-extrabold ${section.color.text}`}>
+                    {section.title}
+                  </h2>
+                </motion.div>
+  
+                <motion.div
+                  className="space-y-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    Revolutionizing the streaming industry with cutting-edge technology and unparalleled support.
-                </motion.p>
-
-                <div className="relative">
-                    <motion.div 
-                        className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-blue-300"
-                        initial={{ scaleY: 0 }}
-                        animate={{ scaleY: 1 }}
-                        transition={{ duration: 1.5, ease: "easeInOut" }}
-                    />
-
-                    {statements.map((statement, index) => (
-                        <motion.div
-                            key={statement.title}
-                            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.2, duration: 0.8, ease: "easeOut" }}
-                            className="relative z-10 mb-16"
-                        >
-                            <div 
-                                className={`flex items-center cursor-pointer group ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
-                                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                            >
-                                <div className={`w-[45%] ${index % 2 === 0 ? 'text-right pr-6' : 'text-left pl-6'}`}>
-                                    <motion.h2 
-                                        className="text-3xl text-blue-600 mb-3 inline-block"
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{ duration: 0.2 }}
-                                        style={{ fontFamily: 'Gilroy-Bold' }}
-                                    >
-                                        {statement.title}
-                                    </motion.h2>
-                                    {!Array.isArray(statement.content) && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.2, duration: 0.5 }}
-                                            className="bg-blue-100 p-5 rounded-lg shadow-md"
-                                        >
-                                            <p 
-                                                className="text-lg text-gray-700 group-hover:text-black transition-colors duration-300 text-left"
-                                                style={{ fontFamily: 'Gilroy-Regular' }}
-                                            >
-                                                {statement.content}
-                                            </p>
-                                        </motion.div>
-                                    )}
-                                </div>
-                                <motion.div 
-                                    className="w-[10%] flex items-center justify-center"
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center text-white text-4xl shadow-lg">
-                                        {statement.icon}
-                                    </div>
-                                </motion.div>
-                                <div className={`w-[45%] ${index % 2 === 0 ? 'text-left pl-6' : 'text-right pr-6'}`}>
-                                    {Array.isArray(statement.content) && (
-                                        <motion.div
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            transition={{ duration: 0.2 }}
-                                            className="inline-block bg-blue-100 text-blue-600 px-6 py-3 rounded-full text-xl shadow-md"
-                                            style={{ fontFamily: 'Gilroy-Bold' }}
-                                        >
-                                            Click to explore our pillars
-                                        </motion.div>
-                                    )}
-                                </div>
-                            </div>
-
-                            <AnimatePresence>
-                                {activeIndex === index && Array.isArray(statement.content) && (
-                                    <motion.div
-                                        initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: 'auto' }}
-                                        exit={{ opacity: 0, height: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="mt-6 bg-blue-50 p-6 rounded-lg shadow-inner w-full"
-                                    >
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            {statement.content.map((item, i) => (
-                                                <motion.div
-                                                    key={i}
-                                                    initial={{ opacity: 0, y: 20 }}
-                                                    animate={{ opacity: 1, y: 0 }}
-                                                    transition={{ delay: i * 0.1, duration: 0.3 }}
-                                                    className="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-                                                >
-                                                    <h3 
-                                                        className="text-xl text-blue-600 mb-2"
-                                                        style={{ fontFamily: 'Gilroy-Bold' }}
-                                                    >
-                                                        {item.split(':')[0]}
-                                                    </h3>
-                                                    <p 
-                                                        className="text-lg text-gray-700"
-                                                        style={{ fontFamily: 'Gilroy-Regular' }}
-                                                    >
-                                                        {item.split(':')[1]}
-                                                    </p>
-                                                </motion.div>
-                                            ))}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-                    ))}
+                  {Array.isArray(section.content) ? (
+                    section.content.map((item, i) => (
+                      <motion.div
+                        key={i}
+                        className={`bg-white/5 rounded-xl p-6 hover:bg-${section.color.accent}/10 
+                          transition-all duration-300 transform hover:-translate-y-1`}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                        transition={{ duration: 0.5, delay: 0.3 + (i * 0.1) }}
+                      >
+                        <p className={`text-lg ${section.color.text} font-gilroy-light`}>
+                          {item}
+                        </p>
+                      </motion.div>
+                    ))
+                  ) : (
+                    <motion.p
+                      className={`text-lg ${section.color.text} font-gilroy-light bg-white/5 
+                        rounded-xl p-6 hover:bg-${section.color.accent}/10 transition-all duration-300`}
+                    >
+                      {section.content}
+                    </motion.p>
+                  )}
+                </motion.div>
+              </div>
+  
+              {/* Right Column - Visual */}
+              <motion.div
+                className="relative aspect-square"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <div className={`absolute inset-0 bg-gradient-radial from-${section.color.accent}/20 
+                  to-transparent rounded-full blur-3xl`} />
+                <div className="relative z-10 transform group-hover:scale-105 transition-transform duration-500">
+                  {section.visual}
                 </div>
-            </motion.div>
-        </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </motion.section>
     );
-};
-
-export default About;
+  };
+  
+  const About: React.FC = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({ target: containerRef });
+    const springScroll = useSpring(scrollYProgress, { 
+      stiffness: 50,
+      damping: 20 
+    });
+  
+    return (
+      <div ref={containerRef} className="relative min-h-screen bg-black">
+        <ScrollProgress />
+        
+        {/* Animated Background */}
+        <div className="fixed inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-primary-950 to-black" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-20" />
+          <motion.div 
+            className="absolute inset-0 bg-gradient-radial from-primary-900/20 via-transparent to-black"
+            style={{
+              opacity: useTransform(springScroll, [0, 0.5], [1, 0.5])
+            }}
+          />
+        </div>
+  
+        {/* Hero Section */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          <motion.div 
+            className="container mx-auto px-4 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <motion.div
+              className="relative w-40 h-40 mx-auto mb-12"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 200, damping: 10 }}
+            >
+              <div className="absolute inset-0 bg-gradient-radial from-primary-500/20 to-transparent rounded-full blur-xl" />
+              <img 
+                src="/logo.png" 
+                alt="Shift2Stream" 
+                className="relative w-full h-full object-contain"
+              />
+            </motion.div>
+  
+            <h1 className="text-7xl md:text-8xl font-gilroy-extrabold mb-8">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-white to-primary-400 animate-shine-slow">
+                Our Story
+              </span>
+            </h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl text-white/90 font-gilroy-light max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Founded in 2018, we're revolutionizing the streaming industry through innovative technology 
+              and unparalleled service.
+            </motion.p>
+  
+            {/* Scroll Indicator */}
+            <motion.div
+              className="absolute bottom-12 left-1/2 -translate-x-1/2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+            >
+              <motion.div
+                className="flex flex-col items-center space-y-2"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <span className="text-white/70 text-sm font-gilroy-light">Scroll to explore</span>
+                <motion.svg 
+                  className="w-6 h-6 text-white/70"
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    fill="currentColor" 
+                    d="M12 5l-8 8h16l-8-8z"
+                  />
+                </motion.svg>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </section>
+  
+        {/* Content Sections */}
+        <div className="relative z-10">
+          {sections.map((section, index) => (
+            <ContentSection
+              key={section.id}
+              section={section}
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+  
+  export default About;
+  
