@@ -1,4 +1,3 @@
-// src/pages/WhatsHappening.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,7 @@ interface ProjectUpdate {
   id: number;
   date: string;
   title: string;
-  category: 'event' | 'launch';
+  category: 'event' | 'launch' | 'certification';
   content: string;
   image: string;
   link: string;
@@ -18,27 +17,27 @@ interface ProjectUpdate {
 const projectUpdates: ProjectUpdate[] = [
   {
     id: 1,
-    date: '2025-01-07',
-    title: 'Shift2Stream at CES 2025',
-    category: 'event',
-    status: 'upcoming',
-    content: 'Join us at CES 2025 where well be showcasing our latest streaming innovations and the future of TV technology. Visit our booth to experience firsthand how were revolutionizing the streaming industry with our cutting-edge solutions.',
-    image: '/images/ces-banner.jpg',
-    link: 'https://www.ces.tech',
+    date: '2024-01-09',
+    title: 'MyVelo TV Launch',
+    category: 'launch',
+    status: 'in-progress',
+    content: 'Introducing MyVelo TV, our revolutionary $100 streaming box that combines Android TV with ATSC 3.0 antenna support. This innovative device brings together traditional over-the-air channels with modern streaming capabilities, offering a seamless entertainment experience that transforms how you watch TV.',
+    image: '/myvelo_screen caputre.png',
+    link: 'https://www.pcworld.com/article/2572129/myvelo-tv-is-a-100-steaming-box-that-also-works-with-an-antenna.html#h5kpcyxh3gjdwuaro3vx0naz5tvgal55e',
   },
   {
     id: 2,
-    date: '2024-12-01',
-    title: 'My Velo TV Launch',
-    category: 'launch',
-    status: 'in-progress',
-    content: 'Were excited to announce the upcoming launch of My Velo TV, our revolutionary streaming platform that combines traditional TV with modern streaming capabilities. Get ready for a seamless entertainment experience that will transform how you watch TV.',
-    image: '/images/my-velo-tv-banner.jpg',
-    link: '/my-velo-tv',
-  },
+    date: '2024-02-01',
+    title: 'NextGen TV Certification Coming Soon',
+    category: 'certification',
+    status: 'upcoming',
+    content: 'We are excited to announce our upcoming NextGen TV certification. This certification will validate our commitment to delivering cutting-edge ATSC 3.0 technology and ensure our products meet the highest industry standards for next-generation television broadcasting.',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNDU0fwoU9G-JANHGofxiGKr7A742i8Za2Mw&s',
+    link: 'https://www.watchnextgentv.com/',
+  }
 ];
 
-const WhatsHappening: React.FC = () => {
+const News: React.FC = () => {
   const getStatusColor = (status: string): string => {
     switch (status) {
       case 'in-progress':
@@ -56,6 +55,8 @@ const WhatsHappening: React.FC = () => {
         return '🎪';
       case 'launch':
         return '🚀';
+      case 'certification':
+        return '✅';
       default:
         return '📌';
     }
@@ -118,7 +119,7 @@ const WhatsHappening: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-24">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32">
       <div className="container mx-auto px-4 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -130,7 +131,7 @@ const WhatsHappening: React.FC = () => {
             className="text-4xl md:text-5xl mb-4 text-blue-900"
             style={{ fontFamily: 'Gilroy-ExtraBold' }}
           >
-            What's Happening
+            News
           </h1>
           <p 
             className="text-xl text-gray-600 max-w-2xl mx-auto"
@@ -224,7 +225,7 @@ const WhatsHappening: React.FC = () => {
             Want to receive updates about our latest developments and events?
           </p>
           <a
-            href="mailto:updates@shift2stream.com"
+            href="mailto:info@shift2stream.com"
             className="bg-blue-600 text-white px-8 py-3 rounded-full inline-flex items-center hover:bg-blue-700 transition-colors duration-300"
             style={{ fontFamily: 'Gilroy-Bold' }}
           >
@@ -249,4 +250,4 @@ const WhatsHappening: React.FC = () => {
   );
 };
 
-export default WhatsHappening;
+export default News;

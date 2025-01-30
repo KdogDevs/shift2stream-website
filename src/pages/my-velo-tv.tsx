@@ -1,4 +1,3 @@
-// src/pages/my-velo-tv.tsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import '../styles/fonts.css';
@@ -7,17 +6,17 @@ const MyVeloTV: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const service = {
-    name: 'My Velo TV',
-    logo: '/path-to-velotv-logo.png', // Replace with actual logo path
-    description: 'Enterprise-Grade TV Entertainment Solutions',
+    name: 'MyVelo TV',
+    logo: '/image.png',
+    description: 'The Best of Free TV and Streaming Together',
     features: [
-      'Customizable Channel Packages',
-      'Enterprise Content Management',
-      'Scalable Multi-Location Deployment',
-      'Dedicated Support & Maintenance',
-      'Advanced Analytics Dashboard'
+      'ATSC 3.0 NextGen TV Support',
+      'Android TV Integration',
+      'Over-the-Air Channel Access',
+      'Streaming App Support',
+      'Affordable $100 Solution'
     ],
-    website: 'https://velo.kdog4u.com' // Replace with actual website
+    website: 'https://myvelotv.com'
   };
 
   return (
@@ -30,7 +29,7 @@ const MyVeloTV: React.FC = () => {
           className="text-4xl md:text-5xl text-center mb-12 text-purple-800"
           style={{ fontFamily: 'Gilroy-ExtraBold' }}
         >
-          My Velo TV
+          MyVelo TV
         </motion.h1>
 
         <motion.p 
@@ -40,8 +39,8 @@ const MyVeloTV: React.FC = () => {
           className="text-xl text-center mb-16 max-w-3xl mx-auto text-gray-700"
           style={{ fontFamily: 'Gilroy-Light' }}
         >
-          Delivering premium entertainment solutions for businesses, hotels, and enterprises. 
-          Transform your facility with our professional-grade TV services.
+          Experience the future of television with our innovative streaming box that combines
+          traditional over-the-air channels with modern streaming capabilities.
         </motion.p>
 
         <motion.div
@@ -107,7 +106,7 @@ const MyVeloTV: React.FC = () => {
                 className="text-lg tracking-wide uppercase"
                 style={{ fontFamily: 'Gilroy-Bold' }}
               >
-                Check Out Now
+                Learn More
               </span>
             </div>
           </motion.a>
@@ -124,13 +123,13 @@ const MyVeloTV: React.FC = () => {
             className="text-3xl mb-8 text-purple-800"
             style={{ fontFamily: 'Gilroy-Bold' }}
           >
-            Why Choose My Velo TV?
+            Why Choose MyVelo TV?
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: 'Enterprise Ready', icon: '🏢', description: 'Built for scalability and performance' },
-              { title: 'Secure & Reliable', icon: '🔒', description: 'Enterprise-grade security and uptime' },
-              { title: '24/7 Support', icon: '💬', description: 'Round-the-clock technical assistance' }
+              { title: 'NextGen TV Ready', icon: '📡', description: 'Built with ATSC 3.0 technology' },
+              { title: 'Affordable Solution', icon: '💰', description: 'Premium features at just $100' },
+              { title: 'Flexible Viewing', icon: '🎯', description: 'Combine OTA channels with streaming apps' }
             ].map((item, index) => (
               <motion.div
                 key={index}

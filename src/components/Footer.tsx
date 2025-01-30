@@ -1,4 +1,3 @@
-// src/components/Footer.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/fonts.css';
@@ -21,7 +20,7 @@ const Footer: React.FC = () => {
                 className="text-gray-300 text-sm" 
                 style={{ fontFamily: 'Gilroy-Light' }}
               >
-                Empowering your streaming experience
+                Revolutionizing NextGen TV & Streaming
               </p>
             </div>
 
@@ -41,8 +40,8 @@ const Footer: React.FC = () => {
                   { name: 'Home', path: '/' },
                   { name: 'About', path: '/about' },
                   { name: 'Services', path: '/services' },
-                  { name: 'My Velo TV', path: '/my-velo-tv' },
-                  { name: "What's Happening", path: '/whats-happening' },
+                  { name: 'MyVelo TV', path: '/my-velo-tv' },
+                  { name: 'News', path: '/news' },
                   { name: 'Contact', path: 'mailto:info@shift2stream.com' }
                 ].map((link) => (
                   <li key={link.name}>
@@ -66,6 +65,41 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
+            {/* Products & Solutions Section */}
+            <div className="w-full md:w-auto flex-shrink-0">
+              <h4 
+                className="text-white text-lg mb-3" 
+                style={{ fontFamily: 'Gilroy-Bold' }}
+              >
+                Products & Solutions
+              </h4>
+              <ul 
+                className="text-gray-300 space-y-2"
+                style={{ fontFamily: 'Gilroy-Regular' }}
+              >
+                <li>
+                  <a 
+                    href="https://myvelotv.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-white transition-all duration-300 hover:translate-x-1 inline-block hover:bg-white/10 px-2 py-1 rounded-lg"
+                  >
+                    MyVelo TV
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.watchnextgentv.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-white transition-all duration-300 hover:translate-x-1 inline-block hover:bg-white/10 px-2 py-1 rounded-lg"
+                  >
+                    NextGen TV
+                  </a>
+                </li>
+              </ul>
+            </div>
+
             {/* Contact Section */}
             <div className="w-full md:w-auto flex-shrink-0">
               <h4 
@@ -85,10 +119,6 @@ const Footer: React.FC = () => {
                   <span className="mr-2 group-hover:scale-110 transition-transform duration-300">📧</span>
                   info@shift2stream.com
                 </a>
-                <p className="flex items-center text-sm px-2 py-1">
-                  <span className="mr-2">📍</span>
-                  United States
-                </p>
               </div>
             </div>
           </div>

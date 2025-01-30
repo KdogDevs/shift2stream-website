@@ -1,4 +1,3 @@
-// src/pages/Services.tsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import '../styles/fonts.css';
@@ -54,8 +53,8 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen py-24 px-6 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen py-32 px-6 overflow-hidden"> {/* Changed py-24 to py-32 */}
+      <div className="max-w-6xl mx-auto pt-16"> {/* Added pt-16 for extra top padding */}
         <motion.h1 
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -137,7 +136,7 @@ const Services: React.FC = () => {
           className="text-center"
         >
           <a 
-            href="mailto:contact@shift2stream.com" 
+            href="mailto:info@shift2stream.com" 
             className="bg-blue-600 text-white py-4 px-10 rounded-full text-xl hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block uppercase tracking-wide"
             style={{ fontFamily: 'Gilroy-Bold' }}
           >
@@ -164,10 +163,10 @@ const Services: React.FC = () => {
           >
             Contact us at{' '}
             <a 
-              href="mailto:contact@shift2stream.com"
+              href="mailto:info@shift2stream.com"
               className="underline hover:text-blue-800 transition-colors duration-300"
             >
-              contact@shift2stream.com
+              info@shift2stream.com
             </a>
           </p>
         </motion.div>

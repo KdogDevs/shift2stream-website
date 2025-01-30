@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -56,7 +55,7 @@ const Header: React.FC = () => {
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'My Velo TV', path: '/my-velo-tv' },
-    { name: "What's Happening", path: '/whats-happening' },
+    { name: 'News', path: '/news' },
     { name: 'Contact', path: 'mailto:info@shift2stream.com' },
   ];
 

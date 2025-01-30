@@ -1,4 +1,3 @@
-// src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
@@ -7,7 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import MyVeloTV from './pages/my-velo-tv';
-import WhatsHappening from './pages/WhatsHappening';
+import News from './pages/News';
 
 const App: React.FC = () => {
   return (
@@ -20,7 +19,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/my-velo-tv" element={<MyVeloTV />} />
-            <Route path="/whats-happening" element={<WhatsHappening />} />
+            <Route path="/news" element={<News />} />
           </Routes>
         </main>
         <Footer />
