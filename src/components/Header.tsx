@@ -142,6 +142,7 @@ const Header: React.FC = () => {
                           ? 'Gilroy-Bold' 
                           : 'Gilroy-Regular' 
                       }}
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
                       {item.name}
                     </Link>
@@ -194,7 +195,10 @@ const Header: React.FC = () => {
                         className={`text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-md transition duration-300 block uppercase tracking-wide text-sm ${
                           location.pathname === item.path ? 'font-gilroy-bold' : 'font-gilroy-regular'
                         }`}
-                        onClick={toggleMenu}
+                        onClick={() => {
+                          toggleMenu();
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
                         style={{ 
                           fontFamily: location.pathname === item.path 
                             ? 'Gilroy-Bold' 
