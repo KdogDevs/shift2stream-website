@@ -54,7 +54,7 @@ const Header: React.FC = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
-    { name: 'My Velo TV', path: '/my-velo-tv' },
+    { name: 'MyVelo TV', path: '/my-velo-tv' },
     { name: 'News', path: '/news' },
     { name: 'Contact', path: 'mailto:info@shift2stream.com' },
   ];
