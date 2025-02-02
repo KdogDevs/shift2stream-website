@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import '../styles/fonts.css';
 
 const Footer: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="relative px-4 pb-6 z-10 bg-blue-50">
       <div className="relative w-[95%] mx-auto bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-xl">
@@ -56,6 +60,7 @@ const Footer: React.FC = () => {
                       <Link 
                         to={link.path}
                         className="text-sm hover:text-white transition-all duration-300 hover:translate-x-1 inline-block hover:bg-white/10 px-2 py-1 rounded-lg"
+                        onClick={link.name === 'About' || link.name === 'Services' ? scrollToTop : undefined}
                       >
                         {link.name}
                       </Link>
