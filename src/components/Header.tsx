@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [startY, setStartY] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -37,14 +38,20 @@ const Header: React.FC = () => {
       }
     };
 
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
     document.addEventListener('scroll', handleScroll);
     document.addEventListener('touchstart', handleTouchStart);
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('resize', handleResize);
 
     return () => {
       document.removeEventListener('scroll', handleScroll);
       document.removeEventListener('touchstart', handleTouchStart);
       document.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('resize', handleResize);
     };
   }, [scrolled, startY]);
 
@@ -89,7 +96,7 @@ const Header: React.FC = () => {
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         className={`fixed w-[95%] mx-auto left-0 right-0 mt-2 rounded-full z-50 transition duration-300 ${
           isHomePage && !scrolled ? 'bg-transparent' : 'bg-white/90 backdrop-blur-sm shadow-lg'
-        }`}
+        } ${windowWidth < 768 ? 'px-4' : 'px-8'}`}
       >
         <div className="container mx-auto px-2">
           <div className="flex justify-between items-center py-2">
