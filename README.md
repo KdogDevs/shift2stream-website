@@ -91,7 +91,7 @@ A GitHub Actions workflow is set up for code scanning to ensure the security and
 
 ### Automatic Releases
 
-A GitHub Actions workflow is set up for automatic releases when a push is made to the `main` branch. The workflow generates release notes using Copilot. The workflow is defined in `.github/workflows/release.yml`.
+A GitHub Actions workflow is set up for automatic releases when a push is made to the `main` branch. The workflow generates release notes using `github/gh-release-notes@v0.2.0`. The workflow is defined in `.github/workflows/release.yml`.
 
 ### Branch Syncing
 
