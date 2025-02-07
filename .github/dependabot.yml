@@ -28,6 +28,10 @@ updates:
     commit-message:
       prefix: "npm"
       include: "scope"
+    # Specify Vite version upgrade
+    allow:
+      - dependency-name: "vite"
+        version: ">=5.4.12"
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
