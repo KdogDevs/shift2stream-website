@@ -91,11 +91,15 @@ A GitHub Actions workflow is set up for code scanning to ensure the security and
 
 ### Automatic Releases
 
-A GitHub Actions workflow is set up for automatic releases when a push is made to the `main` branch. The workflow generates release notes using `github/gh-release-notes@v0.2.0`. The workflow is defined in `.github/workflows/release.yml`.
+A GitHub Actions workflow is set up for automatic releases when a push is made to the `main` branch. The workflow generates release notes using `softprops/action-gh-release@v1`. The workflow is defined in `.github/workflows/release.yml`.
 
 ### Branch Syncing
 
 A GitHub Actions workflow is set up to sync the `dev` branch with the `main` branch. This ensures that all changes are staged in the `dev` branch before being merged into the `main` branch. The workflow is defined in `.github/workflows/sync-dev-main.yml`.
+
+### Auto-Passing on Non-Main Branches
+
+A GitHub Actions workflow is set up to auto pass on non-main branches. The workflow is defined in `.github/workflows/auto-pass.yml`.
 
 ### Permissions Settings for GitHub Actions Workflows
 
