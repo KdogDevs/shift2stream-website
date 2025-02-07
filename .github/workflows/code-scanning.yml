@@ -47,4 +47,4 @@ jobs:
         # Add commands or scripts to address the identified issue here
         echo "Addressing identified issue in CodeQL analysis"
         # Example command to address an issue
-        # npm audit fix
+        npm audit fix
