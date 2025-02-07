@@ -133,3 +133,17 @@ A new GitHub Actions workflow has been added to handle automatic releases whenev
 
 The auto-release workflow leverages GitHub Copilot to generate release notes. This ensures that the release notes are comprehensive and accurately reflect the changes made in each release.
 
+## Creating a Personal Access Token (PAT)
+
+To ensure that the GitHub Actions bot has the necessary permissions to push the tag to the repository, follow these steps to create a personal access token (PAT):
+
+1. Go to GitHub Settings and generate a new token with `repo` scope.
+2. Store the PAT as a secret in your repository settings.
+
+## Storing the PAT as a Secret
+
+To store the PAT as a secret named `PAT` in the repository settings, follow these steps:
+
+1. Go to your repository's settings.
+2. Navigate to the "Secrets" section.
+3. Create a new secret called `PAT` and paste the generated token.
