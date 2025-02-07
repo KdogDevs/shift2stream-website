@@ -23,6 +23,8 @@ jobs:
 
       - name: Create Tag
         id: tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           TAG_NAME="v$(date +'%Y%m%d%H%M%S')"
           echo "Creating tag $TAG_NAME"
