@@ -87,7 +87,7 @@ This repository uses GitHub Actions for various workflows and deployment process
 
 ### Code Scanning
 
-A GitHub Actions workflow is set up for code scanning to ensure the security and quality of the codebase. The workflow is defined in `.github/workflows/code-scanning.yml`.
+A GitHub Actions workflow is set up for code scanning to ensure the security and quality of the codebase. The workflow is defined in `.github/workflows/code-scanning.yml`. The identified code scanning issue has been resolved.
 
 ### Automatic Releases
 
