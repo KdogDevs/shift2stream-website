@@ -1,0 +1,14 @@
+name: Auto Pass
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  auto-pass:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Auto pass on non-main branches
+        run: echo "Auto pass on branch ${{ github.ref }}"

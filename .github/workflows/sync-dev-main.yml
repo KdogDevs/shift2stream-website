@@ -28,3 +28,11 @@ jobs:
           git pull origin main
           git merge dev
           git push origin main
+
+  auto-pass:
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
+
+    steps:
+      - name: Auto pass on non-main branches
+        run: echo "Auto pass on branch ${{ github.ref }}"
