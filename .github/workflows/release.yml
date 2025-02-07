@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate release notes
         id: release_notes
-        uses: github/gh-release-notes@v0.1.0
+        uses: github/gh-release-notes@v0.2.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config: .github/release-notes.yml
