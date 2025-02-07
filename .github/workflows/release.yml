@@ -30,14 +30,14 @@ jobs:
 
       - name: Generate release notes
         id: release_notes
-        uses: github/gh-release-notes@v0.2.0
+        uses: github/copilot-release-notes@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config: .github/release-notes.yml
 
       - name: Create GitHub Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
