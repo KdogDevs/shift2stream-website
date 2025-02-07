@@ -147,3 +147,12 @@ To store the PAT as a secret named `PAT` in the repository settings, follow thes
 1. Go to your repository's settings.
 2. Navigate to the "Secrets" section.
 3. Create a new secret called `PAT` and paste the generated token.
+
+## Updating the Workflow File
+
+To update the workflow file to use the PAT for authentication, follow these steps:
+
+1. Open the `.github/workflows/release.yml` file.
+2. Locate the `Create Tag` step.
+3. Update the `env` section to use `GITHUB_TOKEN: ${{ secrets.PAT }}`.
+4. Save the changes and commit the updated workflow file.
