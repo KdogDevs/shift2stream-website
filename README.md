@@ -93,6 +93,10 @@ A GitHub Actions workflow is set up for code scanning to ensure the security and
 
 A GitHub Actions workflow is set up for automatic releases when a push is made to the `main` branch. The workflow generates release notes using `softprops/action-gh-release@v1`. The workflow is defined in `.github/workflows/release.yml`.
 
+#### Tag Creation Step
+
+The automatic release workflow now includes a step to create a tag before running the release step. This ensures that a tag is always available for the GitHub Releases action. The tag is created based on the current date and time.
+
 ### Branch Syncing
 
 A GitHub Actions workflow is set up to sync the `dev` branch with the `main` branch. This ensures that all changes are staged in the `dev` branch before being merged into the `main` branch. The workflow is defined in `.github/workflows/sync-dev-main.yml`.
