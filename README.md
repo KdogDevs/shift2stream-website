@@ -121,3 +121,11 @@ To contribute to this repository, please follow these steps:
 7. All pull requests must be approved by the repository owner before being merged.
 8. Only the repository owner can edit the branches directly.
 
+## Auto-Release Workflow
+
+A new GitHub Actions workflow has been added to handle automatic releases whenever a PR is merged with the main branch. The release notes for each release are auto-generated using Copilot. The workflow is defined in `.github/workflows/release.yml`.
+
+### Copilot Integration for Release Notes
+
+The auto-release workflow leverages GitHub Copilot to generate release notes. This ensures that the release notes are comprehensive and accurately reflect the changes made in each release.
+
