@@ -80,3 +80,33 @@ Project Link: [https://github.com/KdogDevs/shift2stream-website](https://github.
 - [Vite](https://vitejs.dev/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Tailwind CSS](https://tailwindcss.com/)
+
+## Workflows and Deployment
+
+This repository uses GitHub Actions for various workflows and deployment processes. Below are the details of the workflows:
+
+### Code Scanning
+
+A GitHub Actions workflow is set up for code scanning to ensure the security and quality of the codebase. The workflow is defined in `.github/workflows/code-scanning.yml`.
+
+### Automatic Releases
+
+A GitHub Actions workflow is set up for automatic releases when a push is made to the `main` branch. The workflow generates release notes using Copilot. The workflow is defined in `.github/workflows/release.yml`.
+
+### Branch Syncing
+
+A GitHub Actions workflow is set up to sync the `dev` branch with the `main` branch. This ensures that all changes are staged in the `dev` branch before being merged into the `main` branch. The workflow is defined in `.github/workflows/sync-dev-main.yml`.
+
+## Contribution Instructions
+
+To contribute to this repository, please follow these steps:
+
+1. Fork the repository to your own GitHub account.
+2. Clone the forked repository to your local machine.
+3. Create a new branch for your changes (`git checkout -b feature/YourFeature`).
+4. Make your changes and commit them (`git commit -m 'Add YourFeature'`).
+5. Push your changes to your forked repository (`git push origin feature/YourFeature`).
+6. Open a pull request from your forked repository to the original repository.
+7. All pull requests must be approved by the repository owner before being merged.
+8. Only the repository owner can edit the branches directly.
+
