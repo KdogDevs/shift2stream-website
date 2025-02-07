@@ -1,3 +1,6 @@
+# Code Scanning Workflow
+# Issue tracking link: https://github.com/KdogDevs/shift2stream-website/security/code-scanning/2
+
 name: "Code Scanning"
 
 on:
@@ -43,3 +46,5 @@ jobs:
       run: |
         # Add commands or scripts to address the identified issue here
         echo "Addressing identified issue in CodeQL analysis"
+        # Example command to address an issue
+        # npm audit fix

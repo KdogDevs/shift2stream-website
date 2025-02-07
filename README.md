@@ -87,7 +87,7 @@ This repository uses GitHub Actions for various workflows and deployment process
 
 ### Code Scanning
 
-A GitHub Actions workflow is set up for code scanning to ensure the security and quality of the codebase. The workflow is defined in `.github/workflows/code-scanning.yml`. The identified code scanning issue has been resolved.
+A GitHub Actions workflow is set up for code scanning to ensure the security and quality of the codebase. The workflow is defined in `.github/workflows/code-scanning.yml`. The identified code scanning issue has been resolved. The workflow for the security code scanning issue 2 is now public and correct. For more details, refer to the issue tracking link: [https://github.com/KdogDevs/shift2stream-website/security/code-scanning/2](https://github.com/KdogDevs/shift2stream-website/security/code-scanning/2).
 
 ### Automatic Releases
 
