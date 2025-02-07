@@ -97,6 +97,13 @@ A GitHub Actions workflow is set up for automatic releases when a push is made t
 
 A GitHub Actions workflow is set up to sync the `dev` branch with the `main` branch. This ensures that all changes are staged in the `dev` branch before being merged into the `main` branch. The workflow is defined in `.github/workflows/sync-dev-main.yml`.
 
+### Permissions Settings for GitHub Actions Workflows
+
+To adhere to the principle of least privilege, the following permissions settings have been applied to the GitHub Actions workflows:
+
+- The `.github/workflows/release.yml` workflow specifies `permissions: contents: read, issues: write`.
+- The `.github/workflows/sync-dev-main.yml` workflow specifies `permissions: contents: read, pull-requests: write`.
+
 ## Contribution Instructions
 
 To contribute to this repository, please follow these steps:
