@@ -1,47 +1,34 @@
-# .github/dependabot.yml
+import React from 'react';
+import { cn } from "../lib/utils";
 
-version: 2
-updates:
-  # Enable version updates for npm
-  - package-ecosystem: "npm"
-    # Look for `package.json` and `lock` files in the `root` directory
-    directory: "/"
-    # Check for updates once a week
-    schedule:
-      interval: "weekly"
-    # Specify labels for pull requests
-    labels:
-      - "npm dependencies"
-      - "dependabot"
-    # Limit the number of open pull requests for npm dependencies
-    open-pull-requests-limit: 10
-    # Set version requirement update strategy
-    versioning-strategy: auto
-    # Allow up to 5 open pull requests for npm dependencies
-    pull-request-branch-name:
-      # Separate sections of the branch name with a hyphen
-      separator: "-"
-    # Specify reviewers for pull requests
-    reviewers:
-      - "KdogDevs"
-    # Specify commit message preferences
-    commit-message:
-      prefix: "npm"
-      include: "scope"
-    # Specify Vite version upgrade
-    allow:
-      - dependency-name: "vite"
+const AnimatedBackground: React.FC<{ className?: string }> = ({ className }) => {
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      <div className={cn("absolute inset-0", className)}>
+        <div
+          className="pointer-events-none before:absolute before:inset-0 before:w-full before:content-[''] before:![-webkit-mask-composite:xor] before:![mask-composite:exclude] before:[background-image:--background-radial-gradient] before:[background-size:200%_200%] before:[mask:--mask-linear-gradient] motion-safe:before:animate-shine"
+          style={{
+            "--border-width": "4px",
+            "--duration": "10s",
+            "--mask-linear-gradient": "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            "--background-radial-gradient": "radial-gradient(circle at center, transparent, transparent, #3B82F6, #9333EA, #EC4899, #3B82F6, transparent, transparent)",
+          } as React.CSSProperties}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            className="text-white w-full h-full"
+          >
+            <path
+              fill="currentColor"
+              fillOpacity="1"
+              d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  # Enable version updates for GitHub Actions
-  - package-ecosystem: "github-actions"
-    # Look for `.github/workflows` in the `root` directory
-    directory: "/"
-    # Check for updates once a week
-    schedule:
-      interval: "weekly"
-    # Specify labels for pull requests
-    labels:
-      - "github-actions"
-      - "dependabot"
-    # Allow up to 5 open pull requests for github-actions dependencies
-    open-pull-requests-limit: 5
+export default AnimatedBackground;
