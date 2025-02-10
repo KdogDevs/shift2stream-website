@@ -42,7 +42,7 @@ jobs:
           echo "Release notes generated."
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
           body: ${{ steps.release_notes.outputs.notes }}
