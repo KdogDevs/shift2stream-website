@@ -7,7 +7,8 @@ const MyVeloTV: React.FC = () => {
 
   const service = {
     name: 'MyVelo TV',
-    logo: '/image.png',
+    // Use the primary logo from the public folder
+    logo: '/MyVeloTV_Logo_Primary_RGB.png',
     description: 'The Best of Free TV and Streaming Together',
     features: [
       'ATSC 3.0 NextGen TV Support',
@@ -22,15 +23,17 @@ const MyVeloTV: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-purple-100 to-white min-h-screen pt-24">
       <div className="container mx-auto px-4 py-16">
-        <motion.h1 
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl text-center mb-12 text-purple-800"
-          style={{ fontFamily: 'Gilroy-ExtraBold' }}
-        >
-          MyVelo TV
-        </motion.h1>
+        {/* Top Section - Display Logo */}
+        <div className="flex justify-center mb-12">
+          <motion.img
+            src={service.logo}
+            alt={service.name + ' Logo'}
+            className="h-20 md:h-24"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          />
+        </div>
 
         <motion.p 
           initial={{ opacity: 0 }}
@@ -43,6 +46,7 @@ const MyVeloTV: React.FC = () => {
           traditional over-the-air channels with modern streaming capabilities.
         </motion.p>
 
+        {/* Main Viewing Card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -59,24 +63,17 @@ const MyVeloTV: React.FC = () => {
             onHoverEnd={() => setIsHovered(false)}
           >
             <div className="p-8">
-              <div className="flex items-center justify-between mb-6">
-                <img src={service.logo} alt={service.name} className="h-16" />
-                <motion.div
-                  animate={{ rotate: isHovered ? 90 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-purple-600"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </motion.div>
+              {/* Replace in-card header with product image */}
+              <div className="flex justify-center mb-2">
+                <img
+                  src="/Transparent_Box_Top_Flat_WithRemote.png"
+                  alt="MyVelo TV Box"
+                  className="w-full max-w-xl mx-auto"
+                  style={{ maxHeight: '200px', objectFit: 'contain' }}
+                />
               </div>
-              <h2 
-                className="text-3xl mb-4 text-purple-800"
-                style={{ fontFamily: 'Gilroy-Bold' }}
-              >
-                {service.name}
-              </h2>
+
+              {/* Removed the in-card logo and title */}
               <p 
                 className="text-xl mb-6 text-gray-600"
                 style={{ fontFamily: 'Gilroy-Regular' }}

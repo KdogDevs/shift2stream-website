@@ -26,119 +26,133 @@ interface Section {
   icon: React.ReactNode;
   visual: React.ReactNode;
   color: {
+    // Use only the primary brand colors exactly:
+    // Deep Blue: #021D49, Bahama Blue: #1A428A, 
+    // Bright Turquoise: #10FDC8, MyVelo TV Sea Blue: #4197CB
     gradient: string;
     accent: string;
     text: string;
   };
 }
 
+// Assign sections the 4 primary colors in order:
+// Section 1 & 5: Deep Blue (#021D49) – use white text
+// Section 2 & 6: Bahama Blue (#1A428A) – use white text
+// Section 3 & 7: Bright Turquoise (#10FDC8) – use black text
+// Section 4 & 8: MyVelo TV Sea Blue (#4197CB) – use white text
 const sections: Section[] = [
   {
     id: 'purpose',
     title: 'Purpose',
-    content: "To revolutionize the streaming industry by providing innovative solutions that empower content creators and engage viewers.",
+    content:
+      'To revolutionize the streaming industry by providing innovative solutions that empower content creators and engage viewers.',
     icon: <PurposeIcon />,
     visual: <PurposeVisual />,
     color: {
-      gradient: 'from-purple-500/10 to-purple-600/10',
-      accent: 'purple-500',
-      text: 'text-purple-500'
-    }
+      gradient: 'from-[#021D49] to-[#021D49]',
+      accent: '#021D49',
+      text: 'text-white',
+    },
   },
   {
     id: 'vision',
     title: 'Vision',
-    content: "To be the leading force in transforming how digital content is created, distributed, and consumed.",
+    content:
+      'To be the leading force in transforming how digital content is created, distributed, and consumed.',
     icon: <VisionIcon />,
     visual: <VisionVisual />,
     color: {
-      gradient: 'from-blue-500/10 to-blue-600/10',
-      accent: 'blue-500',
-      text: 'text-blue-500'
-    }
+      gradient: 'from-[#1A428A] to-[#1A428A]',
+      accent: '#1A428A',
+      text: 'text-white',
+    },
   },
   {
     id: 'mission',
     title: 'Mission',
-    content: "To deliver cutting-edge streaming solutions that create meaningful connections between creators and their audiences.",
+    content:
+      'To deliver cutting-edge streaming solutions that create meaningful connections between creators and their audiences.',
     icon: <MissionIcon />,
     visual: <MissionVisual />,
     color: {
-      gradient: 'from-green-500/10 to-green-600/10',
-      accent: 'green-500',
-      text: 'text-green-500'
-    }
+      gradient: 'from-[#10FDC8] to-[#10FDC8]',
+      accent: '#10FDC8',
+      text: 'text-black',
+    },
   },
   {
     id: 'values',
     title: 'Values',
     content: [
-      "Innovation: Constantly pushing boundaries",
-      "Integrity: Building trust through transparency",
-      "Excellence: Delivering outstanding quality",
-      "Community: Fostering meaningful connections"
+      'Innovation: Constantly pushing boundaries',
+      'Integrity: Building trust through transparency',
+      'Excellence: Delivering outstanding quality',
+      'Community: Fostering meaningful connections',
     ],
     icon: <ValuesIcon />,
     visual: <ValuesVisual />,
     color: {
-      gradient: 'from-pink-500/10 to-pink-600/10',
-      accent: 'pink-500',
-      text: 'text-pink-500'
-    }
+      gradient: 'from-[#4197CB] to-[#4197CB]',
+      accent: '#4197CB',
+      text: 'text-white',
+    },
   },
   {
     id: 'brand',
     title: 'Brand Pillars',
     content: [
-      "Innovation in Streaming Technology",
-      "Customer-Centric Solutions",
-      "Quality and Reliability",
-      "Global Reach, Local Impact"
+      'Innovation in Streaming Technology',
+      'Customer-Centric Solutions',
+      'Quality and Reliability',
+      'Global Reach, Local Impact',
     ],
     icon: <BrandPillarsIcon />,
     visual: <BrandVisual />,
     color: {
-      gradient: 'from-orange-500/10 to-orange-600/10',
-      accent: 'orange-500',
-      text: 'text-orange-500'
-    }
+      gradient: 'from-[#021D49] to-[#021D49]',
+      accent: '#021D49',
+      text: 'text-white',
+    },
   },
   {
     id: 'character',
     title: 'Character',
-    content: "Bold, innovative, and reliable - we're committed to excellence in everything we do.",
+    content:
+      "Bold, innovative, and reliable - we're committed to excellence in everything we do.",
     icon: <CharacterIcon />,
     visual: <CharacterVisual />,
     color: {
-      gradient: 'from-red-500/10 to-red-600/10',
-      accent: 'red-500',
-      text: 'text-red-500'
-    }
+      gradient: 'from-[#1A428A] to-[#1A428A]',
+      accent: '#1A428A',
+      text: 'text-white',
+    },
   },
   {
     id: 'market',
     title: 'Market Position',
-    content: "Leading the streaming revolution with innovative technology and unparalleled service quality.",
+    content:
+      'Leading the streaming revolution with innovative technology and unparalleled service quality.',
     icon: <MarketIcon />,
     visual: <MarketVisual />,
     color: {
-      gradient: 'from-cyan-500/10 to-cyan-600/10',
-      accent: 'cyan-500',
-      text: 'text-cyan-500'
-    }
+      gradient: 'from-[#10FDC8] to-[#10FDC8]',
+      accent: '#10FDC8',
+      text: 'text-black',
+    },
   },
   {
     id: 'founders',
     title: 'Our Founders',
-    content: "Visionaries with decades of combined experience in streaming technology and digital innovation.",
+    content:
+      'Visionaries with decades of combined experience in streaming technology and digital innovation.',
     icon: <FoundersIcon />,
     visual: <FoundersVisual />,
     color: {
-      gradient: 'from-teal-500/10 to-teal-600/10',
-      accent: 'teal-500',
-      text: 'text-teal-500'
-    }
-  }
+      gradient: 'from-[#4197CB] to-[#4197CB]',
+      accent: '#4197CB',
+      text: 'text-white',
+    },
+  },
 ];
 
 interface ContentSectionProps {
@@ -149,7 +163,7 @@ interface ContentSectionProps {
 const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: false
+    triggerOnce: false,
   });
 
   return (
@@ -164,30 +178,33 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
         className="container mx-auto max-w-7xl"
         initial={{ opacity: 0, y: 100 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <div 
-          className={`relative backdrop-blur-xl bg-gradient-to-br ${section.color.gradient} 
-            rounded-[2.5rem] p-8 md:p-12 overflow-hidden group transition-all duration-500
-            hover:shadow-glow hover:shadow-${section.color.accent} border border-white/10`}
+        <div
+          className={`
+            relative backdrop-blur-xl bg-gradient-to-br ${section.color.gradient} 
+            rounded-[2.5rem] p-8 md:p-12 overflow-hidden transition-all duration-500
+            border border-white/10
+          `}
         >
+          {/* Removed hover-related classes */}
           <div className="absolute inset-0 bg-shine-gradient bg-shine animate-shine-slow opacity-5" />
-          <div className="absolute inset-0 bg-gradient-radial from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-radial from-white/5 to-transparent opacity-0 transition-opacity duration-500" />
           
           <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <motion.div 
+              <motion.div
                 className="flex items-center space-x-4"
                 initial={{ opacity: 0, x: -50 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
                 transition={{ duration: 0.6 }}
               >
-                <motion.div 
-                  className={`w-16 h-16 rounded-2xl bg-${section.color.accent}/20 p-3 
-                    flex items-center justify-center group-hover:bg-${section.color.accent}/30 
-                    transition-colors duration-300`}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                <motion.div
+                  className={`
+                    w-16 h-16 rounded-2xl bg-[${section.color.accent}] p-3 
+                    flex items-center justify-center transition-colors duration-300
+                  `}
+                  // Removed hover-related scaling
                 >
                   {section.icon}
                 </motion.div>
@@ -206,11 +223,12 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
                   section.content.map((item, i) => (
                     <motion.div
                       key={i}
-                      className={`bg-white/5 rounded-xl p-6 hover:bg-${section.color.accent}/10 
-                        transition-all duration-300 transform hover:-translate-y-1`}
+                      className={`
+                        bg-white/5 rounded-xl p-6 transition-all duration-300
+                      `}
                       initial={{ opacity: 0, x: -20 }}
                       animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                      transition={{ duration: 0.5, delay: 0.3 + (i * 0.1) }}
+                      transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
                     >
                       <p className={`text-lg ${section.color.text} font-gilroy-light`}>
                         {item}
@@ -219,8 +237,9 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
                   ))
                 ) : (
                   <motion.p
-                    className={`text-lg ${section.color.text} font-gilroy-light bg-white/5 
-                      rounded-xl p-6 hover:bg-${section.color.accent}/10 transition-all duration-300`}
+                    className={`
+                      text-lg ${section.color.text} font-gilroy-light bg-white/5 rounded-xl p-6 transition-all duration-300
+                    `}
                   >
                     {section.content}
                   </motion.p>
@@ -234,9 +253,10 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section }) => {
               animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className={`absolute inset-0 bg-gradient-radial from-${section.color.accent}/20 
-                to-transparent rounded-full blur-3xl`} />
-              <div className="relative z-10 transform group-hover:scale-105 transition-transform duration-500">
+              <div className={`
+                absolute inset-0 bg-gradient-radial from-[${section.color.accent}] to-transparent rounded-full blur-3xl
+              `} />
+              <div className="relative z-10 transition-transform duration-500">
                 {section.visual}
               </div>
             </motion.div>
@@ -258,7 +278,7 @@ const About: React.FC = () => {
   return (
     <div ref={containerRef} className="relative min-h-screen bg-white">
       <ScrollProgress />
-      
+
       {/* Fixed background */}
       <div className="fixed inset-0 bg-white">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-5" />
@@ -279,7 +299,7 @@ const About: React.FC = () => {
           transition={{ duration: 1 }}
         >
           <h1 className="text-7xl md:text-8xl font-gilroy-extrabold mb-8">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-primary-600 to-primary-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#021D49] via-[#1A428A] to-[#021D49]">
               Our Story
             </span>
           </h1>
@@ -290,8 +310,7 @@ const About: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Founded in 2018, we're revolutionizing the streaming industry through innovative technology 
-            and unparalleled service.
+            Founded in 2018, we're revolutionizing the streaming industry through innovative technology and unparalleled service.
           </motion.p>
 
           {/* Scroll Indicator */}
