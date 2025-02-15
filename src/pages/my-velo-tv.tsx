@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import '../styles/fonts.css';
 
 const MyVeloTV: React.FC = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
   const service = {
     name: 'MyVelo TV',
     // Use the primary logo from the public folder
@@ -59,8 +57,6 @@ const MyVeloTV: React.FC = () => {
             rel="noopener noreferrer"
             className="block bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 ease-in-out"
             whileHover={{ scale: 1.05 }}
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
           >
             <div className="p-8">
               {/* Replace in-card header with product image */}
