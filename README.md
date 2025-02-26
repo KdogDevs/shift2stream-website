@@ -13,9 +13,7 @@ Shift2Stream is a cutting-edge streaming solutions provider, offering high-quali
 
 ## Prerequisites
 
-Before you begin, ensure you have met the following requirements:
-
-- Node.js (v14.0.0 or later)
+Before you begin, ensure you have met the following 
 - npm (v6.0.0 or later)
 
 ## Installation
@@ -62,17 +60,6 @@ Contributions to the Shift2Stream website are welcome. Please adhere to the foll
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-## License
-
-[Specify your license here, e.g., MIT, GPL, etc.]
-
-## Contact
-
-Your Name - your.email@example.com
-
-Project Link: [https://github.com/KdogDevs/shift2stream-website](https://github.com/KdogDevs/shift2stream-website)
-
 ## Acknowledgements
 
 - [React](https://reactjs.org/)
