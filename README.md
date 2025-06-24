@@ -70,34 +70,38 @@ Contributions to the Shift2Stream website are welcome. Please adhere to the foll
 
 ## Workflows and Deployment
 
-This repository uses GitHub Actions for various workflows and deployment processes. Below are the details of the workflows:
+**⚠️ IMPORTANT NOTE: All GitHub Actions workflows have been disabled for cost savings. The workflow configurations are preserved as commented-out code and can be re-enabled by uncommenting the workflow files in `.github/workflows/` if needed.**
 
-### Code Scanning
+This repository previously used GitHub Actions for various workflows and deployment processes. The workflows are currently disabled but the configurations remain for future reference:
 
-A GitHub Actions workflow is set up for code scanning to ensure the security and quality of the codebase. The workflow is defined in `.github/workflows/code-scanning.yml`. The identified code scanning issue has been resolved. The workflow for the security code scanning issue 1 is now public and correct. For more details, refer to the issue tracking link: [https://github.com/KdogDevs/shift2stream-website/security/code-scanning/1](https://github.com/KdogDevs/shift2stream-website/security/code-scanning/1).
+### Code Scanning (Disabled)
 
-### Automatic Releases
+A GitHub Actions workflow was previously set up for code scanning to ensure the security and quality of the codebase. The workflow was defined in `.github/workflows/code-scanning.yml` but the file no longer exists. **This workflow is currently disabled for cost savings.**
 
-A GitHub Actions workflow is set up for automatic releases when a push is made to the `main` branch. The workflow generates release notes using `softprops/action-gh-release@v1`. The workflow is defined in `.github/workflows/release.yml`.
+### Automatic Releases (Disabled)
 
-#### Tag Creation Step
+A GitHub Actions workflow was previously set up for automatic releases when a push is made to the `main` branch. The workflow generated release notes using `softprops/action-gh-release@v2`. The workflow is defined in `.github/workflows/release.yml` but is currently commented out. **This workflow is currently disabled for cost savings.**
 
-The automatic release workflow now includes a step to create a tag before running the release step. This ensures that a tag is always available for the GitHub Releases action. The tag is created based on the current date and time.
+#### Tag Creation Step (Disabled)
 
-### Branch Syncing
+The automatic release workflow previously included a step to create a tag before running the release step. This ensured that a tag was always available for the GitHub Releases action. The tag was created based on the current date and time. **This functionality is currently disabled for cost savings.**
 
-A GitHub Actions workflow is set up to sync the `dev` branch with the `main` branch. This ensures that all changes are staged in the `dev` branch before being merged into the `main` branch. The workflow is defined in `.github/workflows/sync-dev-main.yml`.
+### Branch Syncing (Disabled)
 
-### Auto-Passing on Non-Main Branches
+A GitHub Actions workflow was previously set up to sync the `dev` branch with the `main` branch. This ensured that all changes were staged in the `dev` branch before being merged into the `main` branch. The workflow was defined in `.github/workflows/sync-dev-main.yml` but the file no longer exists. **This workflow is currently disabled for cost savings.**
 
-A GitHub Actions workflow is set up to auto pass on non-main branches. The workflow is defined in `.github/workflows/auto-pass.yml`.
+### Auto-Passing on Non-Main Branches (Disabled)
 
-### Permissions Settings for GitHub Actions Workflows
+A GitHub Actions workflow was previously set up to auto pass on non-main branches. The workflow is defined in `.github/workflows/auto-pass.yml` but is currently commented out. **This workflow is currently disabled for cost savings.**
 
-To adhere to the principle of least privilege, the following permissions settings have been applied to the GitHub Actions workflows:
+### Permissions Settings for GitHub Actions Workflows (Disabled)
 
-- The `.github/workflows/release.yml` workflow specifies `permissions: contents: read, issues: write`.
-- The `.github/workflows/sync-dev-main.yml` workflow specifies `permissions: contents: read, pull-requests: write`.
+Previously, to adhere to the principle of least privilege, the following permissions settings were applied to the GitHub Actions workflows:
+
+- The `.github/workflows/release.yml` workflow specified `permissions: contents: read, issues: write`.
+- The `.github/workflows/sync-dev-main.yml` workflow specified `permissions: contents: read, pull-requests: write`.
+
+**All workflows are currently disabled for cost savings.**
 
 ## Contribution Instructions
 
@@ -112,15 +116,17 @@ To contribute to this repository, please follow these steps:
 7. All pull requests must be approved by the repository owner before being merged.
 8. Only the repository owner can edit the branches directly.
 
-## Auto-Release Workflow
+## Auto-Release Workflow (Disabled)
 
-A new GitHub Actions workflow has been added to handle automatic releases whenever a PR is merged with the main branch. The release notes for each release are auto-generated using Copilot. The workflow is defined in `.github/workflows/release.yml`.
+A GitHub Actions workflow was previously added to handle automatic releases whenever a PR was merged with the main branch. The release notes for each release were auto-generated using Copilot. The workflow is defined in `.github/workflows/release.yml` but is currently commented out. **This workflow is currently disabled for cost savings.**
 
-### Copilot Integration for Release Notes
+### Copilot Integration for Release Notes (Disabled)
 
-The auto-release workflow leverages GitHub Copilot to generate release notes. This ensures that the release notes are comprehensive and accurately reflect the changes made in each release.
+The auto-release workflow previously leveraged GitHub Copilot to generate release notes. This ensured that the release notes were comprehensive and accurately reflected the changes made in each release. **This functionality is currently disabled for cost savings.**
 
-## Creating a Personal Access Token (PAT)
+## Creating a Personal Access Token (PAT) (For Re-enabling Workflows)
+
+**Note: This section is only relevant if you decide to re-enable the GitHub Actions workflows.**
 
 To ensure that the GitHub Actions bot has the necessary permissions to push the tag to the repository, follow these steps to create a personal access token (PAT):
 
@@ -135,11 +141,14 @@ To store the PAT as a secret named `PAT` in the repository settings, follow thes
 2. Navigate to the "Secrets" section.
 3. Create a new secret called `PAT` and paste the generated token.
 
-## Updating the Workflow File
+## Updating the Workflow File (For Re-enabling Workflows)
+
+**Note: This section is only relevant if you decide to re-enable the GitHub Actions workflows.**
 
 To update the workflow file to use the PAT for authentication, follow these steps:
 
 1. Open the `.github/workflows/release.yml` file.
-2. Locate the `Create Tag` step.
-3. Update the `env` section to use `GITHUB_TOKEN: ${{ secrets.PAT }}`.
-4. Save the changes and commit the updated workflow file.
+2. Uncomment all the lines (remove the `#` at the beginning of each line).
+3. Locate the `Create Tag` step.
+4. Update the `env` section to use `GITHUB_TOKEN: ${{ secrets.PAT }}`.
+5. Save the changes and commit the updated workflow file.

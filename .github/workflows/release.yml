@@ -1,50 +1,51 @@
-name: Auto Release
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  release:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Create Tag
-        id: tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        run: |
-          TAG_NAME="v$(date +'%Y%m%d%H%M%S')"
-          echo "Creating tag $TAG_NAME"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git tag $TAG_NAME
-          git push origin $TAG_NAME
-          echo "::set-output name=tag::$TAG_NAME"
-
-      - name: Generate release notes
-        id: release_notes
-        run: |
-          echo "Generating release notes using Copilot..."
-          # Here you would add the actual command to generate release notes using Copilot
-          echo "Release notes generated."
-
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.tag.outputs.tag }}
-          body: ${{ steps.release_notes.outputs.notes }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# DISABLED FOR COST SAVINGS - Uncomment to re-enable
+# name: Auto Release
+# 
+# on:
+#   push:
+#     branches:
+#       - main
+# 
+# jobs:
+#   release:
+#     runs-on: ubuntu-latest
+# 
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+# 
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: '14'
+# 
+#       - name: Install dependencies
+#         run: npm install
+# 
+#       - name: Create Tag
+#         id: tag
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.PAT }}
+#         run: |
+#           TAG_NAME="v$(date +'%Y%m%d%H%M%S')"
+#           echo "Creating tag $TAG_NAME"
+#           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#           git config --global user.name "github-actions[bot]"
+#           git tag $TAG_NAME
+#           git push origin $TAG_NAME
+#           echo "::set-output name=tag::$TAG_NAME"
+# 
+#       - name: Generate release notes
+#         id: release_notes
+#         run: |
+#           echo "Generating release notes using Copilot..."
+#           # Here you would add the actual command to generate release notes using Copilot
+#           echo "Release notes generated."
+# 
+#       - name: Create GitHub release
+#         uses: softprops/action-gh-release@v2
+#         with:
+#           tag_name: ${{ steps.tag.outputs.tag }}
+#           body: ${{ steps.release_notes.outputs.notes }}
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
